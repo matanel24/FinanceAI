@@ -1,0 +1,14 @@
+# משתני סביבה ומפתחות סודיים
+.env
+
+# תיקיות וקבצי מערכת של פייתון
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# קבצי עבודה של PyCharm ו-Streamlit
+.idea/
+.streamlit/
