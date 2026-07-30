@@ -1,7 +1,7 @@
-# משתני סביבה ומפתחות סודיים
+# Environment variables and sensitive secrets
 .env
 
-# תיקיות וקבצי מערכת של פייתון
+# Python system folders and compiled files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -9,6 +9,6 @@ __pycache__/
 venv/
 ENV/
 
-# קבצי עבודה של PyCharm ו-Streamlit
+# PyCharm and Streamlit working files
 .idea/
 .streamlit/
