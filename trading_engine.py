@@ -10,6 +10,7 @@ from alpaca.trading.client import TradingClient
 from alpaca.trading.requests import MarketOrderRequest
 from alpaca.trading.enums import OrderSide, TimeInForce
 
+# Load environment variables
 load_dotenv()
 API_KEY = os.getenv('ALPACA_API_KEY')
 SECRET_KEY = os.getenv('ALPACA_SECRET_KEY')
@@ -41,7 +42,7 @@ def get_alpaca_account_info():
 
 def execute_live_trade(ticker, qty=1):
     if trading_client is None:
-        return False, "אין חיבור פעיל ל-Alpaca"
+        return False, "No active connection to Alpaca"
 
     try:
         market_order_data = MarketOrderRequest(
@@ -51,9 +52,9 @@ def execute_live_trade(ticker, qty=1):
             time_in_force=TimeInForce.GTC
         )
         order = trading_client.submit_order(order_data=market_order_data)
-        return True, f"הפקודה בוצעה בהצלחה! מזהה: {order.id}"
+        return True, f"Order executed successfully! ID: {order.id}"
     except Exception as e:
-        return False, f"שגיאה בביצוע הפקודה: {str(e)}"
+        return False, f"Error executing order: {str(e)}"
 
 
 def fetch_data(ticker, start="2020-01-01", end=None):
@@ -188,9 +189,9 @@ def run_ai_analysis(ticker_symbol):
     risk_regime = test_data['Market_Risk_Regime']
 
     test_data['RF_Portfolio'] = simulate_risk_managed_trading(prices, test_data['Pred_RF'], volatility, risk_regime,
-                                                              daily_returns)
+                                                             daily_returns)
     test_data['XGB_Portfolio'] = simulate_risk_managed_trading(prices, test_data['Pred_XGB'], volatility, risk_regime,
-                                                               daily_returns)
+                                                              daily_returns)
     test_data['HighRisk_Portfolio'] = simulate_high_risk_trading(prices, test_data['Pred_HighRisk'], daily_returns)
 
     initial_capital_after_fee = 10000 * (1 - 0.001)
